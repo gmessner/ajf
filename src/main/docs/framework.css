@@ -1,0 +1,111 @@
+
+a:link    { color : #666699;}
+a:active  { color : #666699;}
+a:visited { color : #666699;}
+a:hover   { color : green;} 
+
+body { bgcolor="white";
+       font-family : Verdana, Geneva, sans-serif;
+       font-size : 10.0pt;}
+
+th   { bgcolor : black;
+       color : #FFFFFF;
+       text-align : left;
+       font-family : Verdana, Geneva, sans-serif;
+       font-weight : bold;
+       font-size : 10.0pt;}
+
+td   { bgcolor="white";
+       font-family : Verdana, Geneva, sans-serif;
+       font-size : 10.0pt;}
+
+p { font-family : Verdana, Geneva, sans-serif;
+    font-size : 10.0pt;}
+
+li { font-family : Verdana, Geneva, sans-serif;
+     font-size : 10.0pt;}
+
+ul { font-family : Verdana, Geneva, sans-serif;
+     font-size : 10.0pt;}
+
+ol { font-family : Verdana, Geneva, sans-serif;
+     font-size : 10.0pt;}
+
+h1 { font-family : Verdana, Geneva, sans-serif;
+     font-style : italic;
+     font-weight : bold;
+     font-size : 24.0pt;
+     background-attachment : fixed;
+     background-position : center center;
+     text-transform : none;
+     text-align : center;
+     color : #000066;
+     margin-top : 0.0pt;
+     margin-bottom : 14.0pt;}
+
+h2 { font-family : Verdana, Geneva, sans-serif;
+     font-style : italic;
+     font-weight : bold;
+     font-size : 14.0pt;
+     background-attachment : fixed;
+     background-color : #000066;
+     background-position : center center;
+     text-transform : none;
+     text-align : center;
+     color : white;
+     margin-top : 0.0pt;
+     margin-bottom : 0.0pt;}
+
+h3 { font-family : Verdana, Geneva, sans-serif;
+     font-style : normal;
+     font-variant : normal;
+     font-weight : bold;
+     font-size : 12.0pt;
+     text-align : left;
+     color : #000066;
+     margin-top : 14.0pt;
+     margin-bottom : 6.0pt;}
+
+h4 { font-family : Verdana, Geneva, sans-serif;
+     font-size : 14.0pt;
+     margin-top : 14.0pt;
+     margin-bottom : 0.0pt;}
+
+h5 { font-family : Verdana, Geneva, sans-serif;
+     font-size : 12.0pt;}
+
+h6 { font-family : Verdana, Geneva, sans-serif;
+     font-size : 10.0pt;}
+
+code { 
+      font-weight : normal;
+      font-size : 10.0pt;}
+
+pre { 
+      font-weight : normal;
+      font-size : 10.0pt;}
+
+cite { font-style : italic;
+       font-variant : normal;
+       font-weight : bold;
+       color : #666699;}
+
+.step { font-family : Verdana, Geneva, sans-serif;
+	font-size : 10.0pt;
+	margin-top : 12.0;}
+
+.tablehead { font-family : Verdana, Geneva, sans-serif;
+	     font-weight : bold;
+	     font-size : 10.0pt;
+	     text-align : center;
+	     color : black;}
+
+.tablecell { font-family : Verdana, Geneva, sans-serif;
+	     font-size : 10.0pt;}
+
+.whitetext { font-family : Verdana, Geneva, sans-serif;
+	     font-weight : normal;
+	     font-size : 10.0pt;
+	     color : white;
+		 margin-left : 4.0pt;}
+

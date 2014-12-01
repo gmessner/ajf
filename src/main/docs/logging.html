@@ -1,0 +1,285 @@
+<HTML>
+<HEAD>
+<TITLE>
+	Utilizing The Java Logging API
+</TITLE>
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="logging.css" TITLE="Style">
+</HEAD>
+<BODY BGCOLOR="white">
+
+<h2>Utilizing The Java Logging API</h2>
+
+<P>This document is intended to provide basic "how to" and guidelines for utilizing the 
+Java Logging API in your applications and libraries. For more complete
+information on using the Java Logging API see 
+<a href="https://docs.oracle.com/javase/6/docs/technotes/guides/logging/overview.html">Java Logging Overview</a>
+at Sun.</P>
+<br>
+<p>Logging messages is basically a two-step process.
+First, you obtain an appropriate "logger" using a static getLogger() 
+method on the <code>com.messners.ajf.logging.Logging</code> 
+class. (This class also initializes the logging subsystem according
+to our preferences and related conventions.)
+Each logger is part of a hierarchical namespace, with
+the name of a logger is typically made up of a series of 
+dot-separated names such as "java.io" or "com.messners.ajf.something".
+These names conventionallly correspond to the name of a class's package.
+By default, the <code>getLogger()</code>
+methods in <code>com.messners.ajf.logging.Logging</code> return loggers based on 
+package names. </p>
+
+<p>
+Each logger can be controlled and configured individually and independently. 
+A good rule of thumb is to divide up the namespace according to how you envision 
+that the logging will be controlled in production. 
+In most cases, these lines of control naturally align with package boundaries, 
+but in some cases, other groupings (e.g., class-level control) may be more desirable. 
+A class could have its own logger, which you would obtain by naming it explicitly 
+using the following method:</p>
+
+<code>com.messners.ajf.logging.Logging.getLogger(SomeClass.class.getName())</code></p>
+<br>
+<p>The next step in the two-step process of logging messages is calling the 
+appropriate level method on the logger. For example, to log a warning, you 
+would call the warning method.  There are also overloaded 
+log methods with the level explicitly specified.) 
+A description of "warning" and other standard level appears 
+<a href="#levels">below</a>.
+If we compile and run the program 
+shown in the <a href="#listing1">simple example</a>, we get this result:</p>
+<pre>
+20140212 121314.460 INFO LogTest.main() doing stuff
+20140212 121315.068 WARNING LogTest.main() something may be wrong
+</pre>
+If you've taken a look at the example you may be wondering where the "fine" message has
+disappeared to. It turns out that the default configuration logs only messages that are 
+"informational" or higher, and "fine" messages are not higher. 
+We can tell the logging infrastructure to change the level using our preferences file
+or from the command line as follows:
+
+<pre>
+java -Djava.util.logging.ConsoleHandler.level=FINE -D.level=FINE LogTest
+</pre>
+
+<pre>
+20140212 143437.868 FINE LogTest.main() done
+20140212 143437.899 INFO LogTest.main() doing stuff
+20140212 143437.899 WARNING LogTest.main() something may be wrong
+</pre>
+<p>Note that the logging subsystem discards messages which don't meet the level required.
+If preparing the String to log is expensive, it can be useful to avoid
+the expense unless needed.  The <code>logger.isLoggable</code> method may be
+used to wrap the log call in a predicate test.   See the 
+<a href="#listing1">simple example</a>, or Sun's documentation.
+</p>
+<br>
+<p>The guidelines for utilizing the Java Logging API can be summarized as follows:
+<ol>
+<li>Import <code>com.messners.ajf.logging.Logging</code>,
+	<code>java.util.logging.Logger</code> and <code>java.util.logging.Level</code> </li>
+<li>Use the <code>Logging.getLogger()</code> methods to get Logger instances</li>
+<li>Use the level-named methods on your <code>Logger</code> instance. That is use:,<br>
+	<code>logger.info("some&nbsp;info")</code> vs. <code>logger.log(Level.INFO,&nbsp;"some&nbsp;info")</code></li>
+<li>Use the logging levels in accord with the guidance below.</li>
+<li>If logging messages which are expensive to produce, use <code>isLoggable()</code></li>
+</ol>
+</p>
+
+<br>
+<hr width="100%"></hr>
+<a name="listing1"><h3>A Simple Example</h3></a>
+
+<pre><FONT COLOR="#008000">
+/*
+ * Import the AJF Logging class from the logging package
+ */</FONT>
+import com.messners.ajf.logging.Logging;
+
+<FONT COLOR="#008000">/*
+ * Import the java.util.logging.Logger class, this is what we use to log to
+ */</FONT>
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
+public class LogTest {
+
+    <FONT COLOR="#008000">// Get a Logger based on the class name</FONT>
+    private static Logger logger = Logging.getLogger(LogTest.class.getName());
+
+    public static void main(String argv[]) {
+
+        <FONT COLOR="#008000">// Log a FINE message</FONT>
+        logger.fine(<FONT COLOR="FF0000">"done"</FONT>);
+
+        <FONT COLOR="#008000">// Log a INFO message</FONT>
+        logger.info(<FONT COLOR="FF0000">"doing stuff"</FONT>);
+
+        <FONT COLOR="#008000">// Log a WARNING</FONT>
+        logger.warning(<FONT COLOR="FF0000">"something may be wrong"</FONT>);
+
+        <FONT COLOR="#008000">// Log enclosed in a predicate test</FONT>
+        if( logger.isLoggable( Level.FINE ) ) {
+            logger.fine(<FONT COLOR="FF0000">"something is wrong with" + expensive.toString()</FONT>);
+        }
+    }
+}
+</pre>
+
+
+
+<hr width="100%"></hr>
+
+</p>
+
+<a name="levels"><h3>Logging Levels</h3></a>
+<P>
+The <code>java.util.logging.Level</code> class defines a set of 
+standard logging levels that
+can be used to control logging output.  The logging Level objects
+are ordered and are specified by integers.  Enabling logging
+at a given level also enables logging at all higher levels.
+<P>
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" >
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD><FONT SIZE="+2">
+<B>Logging Levels (in descending order)</B></FONT></TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#OFF">OFF</A></B></CODE>
+<BR>
+<DL>
+<DD>OFF is a special level that can be used to turn off logging.
+<p>This level is initialized to <CODE>Integer.MAX_VALUE</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#SEVERE">SEVERE</A></B></CODE>
+<BR>
+<DL>
+<DD>SEVERE is a message level indicating a serious failure.
+ <p>
+ In general SEVERE messages should describe events that are
+ of considerable importance and which will prevent normal
+ program execution.   They should be reasonably intelligible
+ to end users and to system administrators.
+ This level is initialized to <CODE>1000</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#WARNING">WARNING</A></B></CODE>
+<BR>
+<DL>
+<DD>WARNING is a message level indicating a potential problem.
+ <p>
+ In general WARNING messages should describe events that will
+ be of interest to end users or system managers, or which
+ indicate potential problems.
+ This level is initialized to <CODE>900</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#INFO">INFO</A></B></CODE>
+<BR>
+<DL>
+<DD>INFO is a message level for informational messages.
+ <p>
+ Typically INFO messages will be written to the console
+ or its equivalent.  So the INFO level should only be 
+ used for reasonably significant messages that will
+ make sense to end users and system admins.
+ This level is initialized to <CODE>800</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#CONFIG">CONFIG</A></B></CODE>
+<BR>
+<DL>
+<DD>CONFIG is a message level for static configuration messages.
+ <p>
+ CONFIG messages are intended to provide a variety of static
+ configuration information, to assist in debugging problems
+ that may be associated with particular configurations.
+ For example, CONFIG message might include the CPU type,
+ the graphics depth, the GUI look-and-feel, etc.
+ This level is initialized to <CODE>700</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#FINE">FINE</A></B></CODE>
+<BR>
+<DL>
+<DD>FINE is a message level providing tracing information.
+ <p>
+ All of FINE, FINER, and FINEST are intended for relatively
+ detailed tracing.  The exact meaning of the three levels will
+ vary between subsystems, but in general, FINEST should be used
+ for the most voluminous detailed output, FINER for somewhat
+ less detailed output, and FINE for the  lowest volume (and
+ most important) messages.
+ <p>
+ In general the FINE level should be used for information
+ that will be broadly interesting to developers who do not have
+ a specialized interest in the specific subsystem.
+ <p>
+ FINE messages might include things like minor (recoverable)
+ failures.  Issues indicating potential performance problems
+ are also worth logging as FINE.
+ This level is initialized to <CODE>500</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#FINER">FINER</A></B></CODE>
+<BR>
+<DL>
+<DD>FINER indicates a fairly detailed tracing message.
+<P>
+ By default logging calls for entering, returning, or throwing
+ an exception are traced at this level.
+ This level is initialized to <CODE>400</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#FINEST">FINEST</A></B></CODE>
+<BR>
+<DL>
+<DD>FINEST indicates a highly detailed tracing message.
+<P>
+ This level is initialized to <CODE>300</CODE>.
+</DL>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="#ALL">ALL</A></B></CODE>
+<BR>
+<DL>
+<DD>ALL indicates that all messages should be logged.
+<P>
+ This level is initialized to <CODE>Integer.MIN_VALUE</CODE>.
+</DL>
+</TD>
+</TR>
+
+</TABLE>
+
+
+</BODY>
+</HTML>

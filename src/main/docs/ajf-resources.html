@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Resource Loading Using A Java Framework (AJF)</title>
+<link href="framework.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%"><tr><td>
+<h2>Resource Loading Using &quot;A&quot; Java Framework (AJF)</h2>
+</td></tr></table>
+
+<h3>ResourceBundle Description</h3>
+
+<code>ResourceBundles</code> are used to store resources for an application that <b>do not</b> change as the
+application runs. These resources are usually things like <code>Strings</code> that are displayed
+on labels and buttons throughout the application. They may also specify other
+resources such as URLs for icons. </p>
+
+Each <code>ResourceBundle</code> is associated with a particular class and the default system
+<code>Locale</code> and is automatically loaded
+when an instance of <code>com.messners.ajf.ui.ResourceLoader</code> is created.
+Usually only top-level frames and dialogs
+will have a ResourceBundle associated with them, with framework components
+being an exception. To create an instance of <code>ResourceLoader</code> for
+your top-level frame or dialog simply create a <code>ResourceLoader</code>
+instance with the the Class of the top-level frame or dialog as the only parameter:</p>
+
+<pre>
+    ResourceLoader resLoader = new ResourceLoader(this.getClass());
+</pre>
+
+<br>
+<h3>Loading JComponents</h3>
+
+<p><code>JComponent</code> resources are loaded by a <code>ResourceLoader</code>
+instance using the <code>JComponent</code> <code>load(String name)</code> method,
+where <code>name</code> specifies the name of the resource in the 
+<code>ResourceBundle</code>. For example, a button resource could be
+defined in the <code>ResourceBundle</code> that specifies a <code>JButton</code>
+component with "Next" as the label and a right pointing arrow as the icon, the
+resource definition would look similar to this:</p>
+
+<pre>
+    next.type=button
+    next.label=Next
+    next.icon=RightArrow.gif
+</pre>
+
+<p>You would then load this resource as follows:</p>
+
+<pre>    JComponent nextButton = resLoader.load("next");
+	
+    or
+	
+    JButton nextButton = (JButton)resLOader.load("next");</pre>
+
+<p><code>ResourceLoader.load(String name)</code> method can load the following components:</p>
+
+<ul type="square">
+<li><a href="#color-chooser">com.messners.ajf.ui.ColorChooser</a></li>
+<li><a href="#color-menu">com.messners.ajf.ui.ColorMenu</a></li>
+<li><a href="#text-label">com.messners.ajf.ui.TextLabel</a></li>
+<li><a href="#button">javax.swing.JButton</a></li>
+<li><a href="#checkbox">javax.swing.JCheckBox</a></li>
+<li><a href="#combobox">javax.swing.JComboBox</a></li>
+<li><a href="#label">javax.swing.JLabel</a></li>
+<li><a href="#menu">javax.swing.JMenu</a></li>
+<li><a href="#menubar">javax.swing.JMenuBar</a></li>
+<li><a href="#popup">javax.swing.JPopupMenu</a></li>
+<li><a href="#radio-button">javax.swing.JRadioButton</a></li>
+<li><a href="#text-field">javax.swing.JTextField / JFormattedTextField</a></li>
+<li><a href="#toolbar">javax.swing.Toolbar</a></li>
+</ul>
+
+<p>The following martrix shows each <code>JComponent</code> and it's applicable resource attributes.</p>
+
+<TABLE CELLSPACING="0" CELLPADDING="5" BORDER=".01" width="100%">
+<TR><TD bgcolor="#dddddd"></TD>
+	<TD align="center" class="whitetext" bgcolor="#000066" colspan="16">
+	<strong>Applicable Resource Attributes</strong></TD></TR>
+<TR align="center" bgcolor="#dddddd"><TD bgcolor="#000066" class="whitetext">
+	<strong>JComponent</strong></TD><TD>type</TD><TD>action</TD>
+	<TD>border</TD><TD>alignment</TD><TD>editable</TD><TD>icon</TD><TD>items</TD>
+	<TD>label</TD><TD>mask</TD><TD>orientation</TD><TD>rollover</TD><TD>shortcut</TD>
+	<TD>tooltip</TD><TD>valid-chars</TD><TD>value</TD><TD>width</TD></TR>
+<TR align="center"><TD><a name="button">JButton</a></td><td>button</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>*</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="checkbox">JCheckBox</a></TD><TD>checkbox</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>*</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="color-chooser">ColorChooser</a></TD><TD>color-chooser</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="color-menu">ColorMenu</a></TD><TD>color-menu</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="combobox">JComboBox</a></TD><TD>combobox</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="group">JPanel</a></TD><TD>group</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="label">JLabel</a></TD><TD>label</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>*</TD><TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="menu">JMenu</a></TD><TD>menu</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="menubar">JMenuBar</a></TD><TD>menubar</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="popup">JPopupMenu</a></TD><TD>popup</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="radio-button">JRadioButton</a></TD><TD>radio-button</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>*</TD><TD>&nbsp;</TD><TD>*</TD><TD>*</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="radio-group">JPanel</a></TD><TD>radio-group</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="text-field">JTextField<br>JFormattedTextField</a></TD><TD>text-field</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>*</TD><TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>*</TD><TD>*</TD><TD>*</TD></TR>
+<TR bgcolor="#eeeeff" align="center"><TD><a name="text-label">TextLabel</a></TD><TD>text-label</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD>
+	<TD>*</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR align="center"><TD><a name="toolbar">JToolBar</a></TD><TD>toolbar</TD><TD>&nbsp;</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>*</TD><TD>*</TD><TD>&nbsp;</TD><TD>*</TD>
+	<TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+<br>
+<br>
+
+<p>Resource attributes are described as follows:</p>
+
+<p><TABLE CELLSPACING="0" CELLPADDING="5" BORDER="0" width="100%">
+<TR bgcolor="#000066"><TD align="left" class="whitetext">
+	<strong>Attribute</strong></TD>
+	<TD align="left" class="whitetext" bgcolor="#000066">
+	<strong>Description</strong></TD</TR>
+
+<tr><TD>action</TD><TD>Fully qualified class name for the Action. Actions are only applicable if the resource is on a menu or toolbar.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>alignment</TD><TD>Specifies label alignment. Must be right, center, left, leading, or trailing.</TD></tr>
+<tr><TD>border</TD><TD>Specifies the border type. Must be none, etched, raised-bevel, lowered-bevel, line, or titled. If
+border="titled" or border="none", use the "title" or "label" resource for the title string to be displayed.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>editable</TD><TD>Specifies whether the text field is editable. 
+Default is true for text-field and false for combobox.</TD></tr>
+<tr><TD>icon</TD><TD>The icon URL for the resource.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>items</TD><TD>Space delimeited list of items to be placed in the component. 
+For a combobox this would be the list of strings for the popup menu, 
+for a menubar this is a list of top-level menus, for a menu or popup menu this is a list of 
+components to be placed on the menu, and for a toolbar it is a list of toolbar components.</TD></tr>
+<tr><TD>label</TD><TD>The label text for the label. 
+Labels may contain a mnemonic which is identified by a character 
+being preceeded by an &amp; (ampersand).</TD></tr>
+<tr bgcolor="#eeeeff"><TD>mask</TD><TD>The input mask for the text field, 
+see JFormattedTextField and MaskFormatter for more info.</TD></tr>
+<tr><TD>orientation</TD><TD>Specifies the orientation of the toolbar.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>rollover</TD><TD>Specifies whether the radio button should be 
+displayed using rollover effects when displayed on a toolbar.</TD></tr>
+<tr><TD>shortcut</TD><TD>Shortcut to activate the component. Shortcuts are specified
+using either Alt+<i>key</i> or Ctrl+<i>key</i> notaion.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>tooltip</TD><TD>The tooltip text for the component. Can contain HTML.</TD></tr>
+<tr><TD>type</TD><TD>See the matrix above.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>valid-chars</TD><TD>Restricts valid characters, only used in conjumction with mask.</TD></tr>
+<tr><TD>value</TD><TD>The value to assign to this radio button, 
+this value will be returned by calling getSelectedValue() 
+on the containing com.messners.ajf.ui.ButtonGroupExt. 
+Defaults to the name of the radio button.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>width</TD><TD>The width in columns to use when computing 
+the preferred size of this component.</TD></TR>
+</TABLE></p>
+
+<br>
+<h3>Loading JTextFields</h3>
+
+<p><code>JTextFields</code> resources are loaded by a <code>ResourceLoader</code>
+instance using the <code>text-field</code> type.  This type
+has the following special attributes:</p>
+<p><TABLE CELLSPACING="0" CELLPADDING="5" BORDER="0" width="100%">
+<TR bgcolor="#000066"><TD align="left" class="whitetext">
+	<strong>Attribute</strong></TD>
+	<TD align="left" class="whitetext" bgcolor="#000066">
+	<strong>Description</strong></TD</TR>
+<tr bgcolor="#eeeeff"><TD>alignment</TD><TD>Specifies text alignment. 
+Must be <code>right, center, left, leading, or trailing</code>.</TD></tr>
+<tr><TD>document</TD><TD>Specified the Document type, must either be null or one of the following:<br>
+<code>alpha-numeric, double, integer</code>.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>editable</TD><TD>Specifies whether the text field is editable. 
+Default is true for text-field and false for combobox.</TD></tr>
+<tr><TD>mask</TD><TD>The input mask for the text field, 
+see JFormattedTextField and MaskFormatter for more info.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>max-value</TD><TD>Specifies the maximum value for a double or integer
+document type.</TD></tr>
+<tr><TD>max-width</TD><TD>Specifies the maximum number of characters for the field.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>min-value</TD><TD>Specifies the minimum value for a double or integer
+document type.</TD></tr>
+<tr><TD>valid-chars</TD><TD>Restricts valid characters, only used in conjumction with mask.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>value</TD><TD>The value to assign to the text-field.</TD></tr>
+<tr><TD>width</TD><TD>The width in columns for the text-field.</TD></TR>
+</TABLE></p>
+
+<br>
+<h3>Loading JPanels</h3>
+
+<p><code>JPanel</code> resources are loaded by a <code>ResourceLoader</code>
+instance using either a <code>group</code> or <code>radio-group</code> type.  This type
+has the following special attributes:</p>
+<p><TABLE CELLSPACING="0" CELLPADDING="5" BORDER="0" width="100%">
+<TR bgcolor="#000066"><TD align="left" class="whitetext">
+	<strong>Attribute</strong></TD>
+	<TD align="left" class="whitetext" bgcolor="#000066">
+	<strong>Description</strong></TD</TR>
+
+<tr><TD>columns</TD><TD>The number of columns for the layout of the <code>JPanel</code>.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>heading</TD><TD>Specifies a label to put to the left of the managed components.</TD></tr>
+<tr><TD>items</TD><TD>A list of component names to add to this <code>JPanel</code>.</TD></tr>
+<tr bgcolor="#eeeeff"><TD>layout</TD><TD>Specifies the layout manager for this <code>JPanel</code>.
+Currently only "labeled-pair" is supported.</TD></tr>
+<tr><TD>rows</TD><TD>The number of rows for the layout of the <code>JPanel</code>.
+Will be automatically computed if not specified.</TD></tr>
+</TABLE></p>
+
+</body>
+</html>
