@@ -114,11 +114,9 @@ public class GetOpt {
 		}
 
 		/* get next option & bump ptr */
-
 		optopt = argv[optind].charAt(charpos++); 
 
 		/* check for double option chars */
-
 		if (optopt == optsw) {
 			charpos = 0;
 			optind++;
@@ -126,7 +124,6 @@ public class GetOpt {
 		}
 
 		/* check for number */
-
 		if (Character.isDigit(optopt)) {
 			for (int i = 0; i < optstr.length(); i++) {
 				char c = optstr.charAt(i);
@@ -289,34 +286,5 @@ public class GetOpt {
 	 */
 	public void setSwitches (char switches[]) {
 		this.switches = switches;
-	}
-	
-	/**
-	 * Built-in tester
-	 */
-	public static void main (String args[]) {
-
-		String optstr = args[0];
-		String argv[] = new String[args.length - 1];
-		for (int i = 1; i < args.length; i++) {
-			argv[i - 1] = args[i];
-		}
-
-		GetOpt opts = new GetOpt(optstr);
-		while (true) {
-
-			int c = opts.getOpt(argv);
-
-			if (c == GetOpt.ERROR) {
-				System.err.println(opts.getErrorMsg());
-				break;
-			}
-
-			if (c == GetOpt.EOF) {
-				break;
-			}
-
-			System.err.println("c=" + (char)c + ", optarg=" + opts.getOptArg());
-		}
 	}
 }
