@@ -5,7 +5,7 @@
 	<groupId>com.messners</groupId>
 	<artifactId>ajf</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<name>ajf</name>
 	<description>AJF - A Java Framework for building Swing and console based applications</description>
 	<url>http://www.messners.com/#ajf/ajf.html</url>
@@ -48,7 +48,7 @@
 		<url>git@github.com:gmessner/ajf.git</url>
 		<connection>scm:git:git@github.com:gmessner/ajf.git</connection>
 		<developerConnection>scm:git:git@github.com:gmessner/ajf.git</developerConnection>
-		<tag>ajf-1.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<build>
