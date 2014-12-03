@@ -59,7 +59,7 @@ public class GetOpt {
 	 * (which is not universally available).
 	 *
 	 * @param  argv	 argument vector
-	 * @returns  option found, ERROR if error or EOF if at end
+	 * @return  option found, ERROR if error or EOF if at end
 	 */
 	public int getOpt (String argv[]) {
 		return (getOpt(argv, null));
@@ -73,8 +73,8 @@ public class GetOpt {
 	 * (which is not universally available).
 	 *
 	 * @param  argv	 argument vector
-	 * @param  opstr  
-	 * @returns  option found, ERROR if error or EOF if at end
+	 * @param  optstr  the option string (see Unix getopt(3))  
+	 * @return  option found, ERROR if error or EOF if at end
 	 */
 	public int getOpt (String argv[], String optstr) {
 
@@ -208,7 +208,7 @@ public class GetOpt {
 	 *
 	 * @param   argv  args from cmd line.
 	 * @param   arg	  arg to look for.
-	 * @returns true if found, false if not.
+	 * @return true if found, false if not.
 	 */
 	public boolean containsArg (String argv[], char arg) {
 
@@ -243,7 +243,7 @@ public class GetOpt {
 	 *
 	 * @param  argv	 args from cmd line.
 	 * @param  arg   arg to look for.
-	 * @returns  A pointer to arg if present, null if not.
+	 * @return  A pointer to arg if present, null if not.
 	 */
 	public String getStringArg (String argv[], char arg) {
 
@@ -275,7 +275,7 @@ public class GetOpt {
 	/**
 	 * Gets the last reported error message.
 	 *
-	 * @returns  A pointer to error message
+	 * @return  A pointer to error message
 	 */
 	public String getErrorMsg () {
 		return (msgbuf);
@@ -285,7 +285,7 @@ public class GetOpt {
 	/**
 	 * Sets option switches to look for.
 	 *
-	 * @param   str	 char array of switch characters.
+	 * @param switches char array of switch characters.
 	 */
 	public void setSwitches (char switches[]) {
 		this.switches = switches;
