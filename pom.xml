@@ -10,7 +10,6 @@
 	<description>AJF - A Java Framework for building Swing and console based applications</description>
 	<url>http://www.messners.com/#ajf/ajf.html</url>
 
-
 	<distributionManagement>
 		<snapshotRepository>
       			<id>ossrh</id>
