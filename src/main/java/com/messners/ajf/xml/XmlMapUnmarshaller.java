@@ -15,10 +15,10 @@ import org.xml.sax.SAXException;
 
 /**
  * This class implements an <code>XmlUnmarshaller</code> that unmarshal
- * elements that contain a single integer as content.  This single
- * interger value will be returned as a <code>java.lang.Integer</code>
- * instance from getResults().  Use <code>getIntValue()</code> to have
- * the value returned as an <code>int</code>.
+ * elements that contain a parent map element with contained name/value pairs.
+ * The map will be returned as an Object of <code>Map<String, Serializable></code>
+ * instance from getResults().  Use <code>getMap()</code> to have
+ * the value returned as a <code>Map<String, Serializable></code>.
  *
  * @author  Greg Messner <greg@messners.com>
  */
@@ -195,6 +195,7 @@ public class XmlMapUnmarshaller extends XmlBaseUnmarshaller
 			buffer = bufferStack.pop();
 		}
 	}
+	
 
 	/**
 	 * <p>This implementation overrides this method so that it can build up
@@ -267,11 +268,11 @@ public class XmlMapUnmarshaller extends XmlBaseUnmarshaller
 
 
 	/**
-	 * To be as fast as possible we cache our CharArrayWriters on a stack.
-	 * This method will pop a CharArrayWriter if available otherwise it will
+	 * To be as fast as possible we cache our StringBuffers on a stack.
+	 * This method will pop a StringBuffers if available otherwise it will
 	 * create a new one.
 	 *
-	 * @return  a new or properly reset <code>CharArrayWriter</code>
+	 * @return  a new or properly reset <code>StringBuffer</code>
 	 */
 	protected static StringBuffer getBuffer () {
 
