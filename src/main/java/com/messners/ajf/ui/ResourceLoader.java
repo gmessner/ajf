@@ -892,6 +892,11 @@ public class ResourceLoader extends Resources implements UIConstants {
 			btn = new JCheckBox(label);
 		}
 
+		String checked = getResource(name + ".checked");
+		if ("true".equals(checked)) {
+			btn.setSelected(true);
+		}
+
 		setToolTipText(btn, name);
 
 		return (btn);
