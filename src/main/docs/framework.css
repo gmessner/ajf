@@ -1,111 +1,158 @@
+a:link {
+    color: #669;
+}
 
-a:link    { color : #666699;}
-a:active  { color : #666699;}
-a:visited { color : #666699;}
-a:hover   { color : green;} 
+a:active {
+    color: #669;
+}
 
-body { bgcolor="white";
-       font-family : Verdana, Geneva, sans-serif;
-       font-size : 10.0pt;}
+a:visited {
+    color: #669;
+}
 
-th   { bgcolor : black;
-       color : #FFFFFF;
-       text-align : left;
-       font-family : Verdana, Geneva, sans-serif;
-       font-weight : bold;
-       font-size : 10.0pt;}
+a:hover {
+    color: green;
+}
 
-td   { bgcolor="white";
-       font-family : Verdana, Geneva, sans-serif;
-       font-size : 10.0pt;}
+body {
+    bgcolor: #fff;
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-p { font-family : Verdana, Geneva, sans-serif;
-    font-size : 10.0pt;}
+th {
+    bgcolor: #000;
+    color: #FFF;
+    text-align: left;
+    font-family: Verdana,Geneva,sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+}
 
-li { font-family : Verdana, Geneva, sans-serif;
-     font-size : 10.0pt;}
+td {
+    bgcolor: #fff;
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-ul { font-family : Verdana, Geneva, sans-serif;
-     font-size : 10.0pt;}
+p {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-ol { font-family : Verdana, Geneva, sans-serif;
-     font-size : 10.0pt;}
+li {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-h1 { font-family : Verdana, Geneva, sans-serif;
-     font-style : italic;
-     font-weight : bold;
-     font-size : 24.0pt;
-     background-attachment : fixed;
-     background-position : center center;
-     text-transform : none;
-     text-align : center;
-     color : #000066;
-     margin-top : 0.0pt;
-     margin-bottom : 14.0pt;}
+ul {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-h2 { font-family : Verdana, Geneva, sans-serif;
-     font-style : italic;
-     font-weight : bold;
-     font-size : 14.0pt;
-     background-attachment : fixed;
-     background-color : #000066;
-     background-position : center center;
-     text-transform : none;
-     text-align : center;
-     color : white;
-     margin-top : 0.0pt;
-     margin-bottom : 0.0pt;}
+ol {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-h3 { font-family : Verdana, Geneva, sans-serif;
-     font-style : normal;
-     font-variant : normal;
-     font-weight : bold;
-     font-size : 12.0pt;
-     text-align : left;
-     color : #000066;
-     margin-top : 14.0pt;
-     margin-bottom : 6.0pt;}
+h1 {
+    font-family: Verdana,Geneva,sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 24pt;
+    background-attachment: fixed;
+    background-position: center center;
+    text-transform: none;
+    text-align: center;
+    color: #006;
+    margin-top: 0;
+    margin-bottom: 14pt;
+}
 
-h4 { font-family : Verdana, Geneva, sans-serif;
-     font-size : 14.0pt;
-     margin-top : 14.0pt;
-     margin-bottom : 0.0pt;}
+h2 {
+    font-family: Verdana,Geneva,sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 14pt;
+    background-attachment: fixed;
+    background-color: #006;
+    background-position: center center;
+    text-transform: none;
+    text-align: center;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
-h5 { font-family : Verdana, Geneva, sans-serif;
-     font-size : 12.0pt;}
+h3 {
+    font-family: Verdana,Geneva,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    font-size: 12pt;
+    text-align: left;
+    color: #006;
+    margin-top: 14pt;
+    margin-bottom: 6pt;
+}
 
-h6 { font-family : Verdana, Geneva, sans-serif;
-     font-size : 10.0pt;}
+h4 {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 14pt;
+    margin-top: 14pt;
+    margin-bottom: 0;
+}
 
-code { 
-      font-weight : normal;
-      font-size : 10.0pt;}
+h5 {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 12pt;
+}
 
-pre { 
-      font-weight : normal;
-      font-size : 10.0pt;}
+h6 {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
 
-cite { font-style : italic;
-       font-variant : normal;
-       font-weight : bold;
-       color : #666699;}
+code {
+    font-weight: 400;
+    font-size: 10pt;
+}
 
-.step { font-family : Verdana, Geneva, sans-serif;
-	font-size : 10.0pt;
-	margin-top : 12.0;}
+pre {
+    font-weight: 400;
+    font-size: 10pt;
+}
 
-.tablehead { font-family : Verdana, Geneva, sans-serif;
-	     font-weight : bold;
-	     font-size : 10.0pt;
-	     text-align : center;
-	     color : black;}
+cite {
+    font-style: italic;
+    font-variant: normal;
+    font-weight: 700;
+    color: #669;
+}
 
-.tablecell { font-family : Verdana, Geneva, sans-serif;
-	     font-size : 10.0pt;}
+.step {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+    margin-top: 12px;
+}
 
-.whitetext { font-family : Verdana, Geneva, sans-serif;
-	     font-weight : normal;
-	     font-size : 10.0pt;
-	     color : white;
-		 margin-left : 4.0pt;}
+.tablehead {
+    font-family: Verdana,Geneva,sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    text-align: center;
+    color: #000;
+}
 
+.tablecell {
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 10pt;
+}
+
+.whitetext {
+    font-family: Verdana,Geneva,sans-serif;
+    font-weight: 400;
+    font-size: 10pt;
+    color: #fff;
+    margin-left: 4pt;
+}
